@@ -3,20 +3,22 @@ package org.example;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
-public class HelloWorlController {
+@RequestMapping("/hello")   // Parent mapping
+public class HelloWorldController {
 
     // need a controller method to show initial HTML form
-    @RequestMapping("/showForm")
+    @RequestMapping("/showForm")    //Sub mappings(relative)
     public String showForm() {
         return "helloworld-form";
     }
 
     // need a controller method to process the HTML form
-    @RequestMapping("/processForm")
+    @RequestMapping("/processForm")   //Sub mappings(relative)
     public String processForm() {
         return "helloworld";
     }
@@ -35,6 +37,21 @@ public class HelloWorlController {
 
         // create the message
         String result = "Yo! " + theName;
+
+        // add message to the model
+        model.addAttribute("message", result);
+
+        return "helloworld";
+    }
+
+    @RequestMapping("/processFormVersionThree")
+    public String processFormVersionThree(@RequestParam("studentName") String theName, Model model) {
+
+        //convert the data to all caps
+        theName = theName.toUpperCase();
+
+        // create the message
+        String result = "Hey My Friend from v3! " + theName;
 
         // add message to the model
         model.addAttribute("message", result);

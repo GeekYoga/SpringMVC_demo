@@ -5,7 +5,7 @@
 </headn>
 
 <bodu>
-    <form action="processFormVersionTwo" method="GET">
+    <form action="processFormVersionThree" method="GET">
         <input type="text" name="studentName" placeholder="What's tour name?"/>
         <input type="submit"/>
     </form>
